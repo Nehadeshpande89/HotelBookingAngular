@@ -1,0 +1,115 @@
+<div class="h" style="height: 700px;overflow-y: auto;background-color: antiquewhite;">
+<div class="h p" layout="column" layout-align="start center" *ngIf="BookingFlag == false">
+    <div class="h" layout="row" layout-align="start center" style="height: 320px;">
+        <div class="v bxshdw3 brdRad" layout="row" layout-align="center center" style="background-image: url('assets/hotelimp.jpg');width: 30%;background-position-y: center;background-size: cover;background-position-x:center;">
+        </div>
+        <div class="v bxshdw3 brdRad lm" layout="row" layout-align="center center" style="background-image: url('assets/amara-s1180x560.jpg');width: 70%;background-position-y: center;background-size: cover;background-position-x:center;">
+        </div>
+        <div class="lm vh bxshdw3 buttonBlue bBrd pt brd2" style="position: absolute;top: 20px;right:10px;" layout="row" layout-align="center center" (click)="bookingFunc()">
+            <h5 class="px14 hw">Booking</h5>
+        </div>
+   </div>
+    <div class="b  tm" layout="row" layout-align="center center" style="height: 80px;color: darkmagenta;">
+        <h5 class="clr1 hw px30" style="font-family: fantasy;">Our Services</h5>
+    </div>
+    <div class="h" layout="column" layout-align="start center" style="height: 250px;">
+       <div class="h btm" style="height: 200px;" layout="row" layout-align="space-around center">
+            <div class="v rp" style="width: 20%;" *ngFor="let arr of serviceArr" layout="column" layout-align="center center">
+                <div class="b bm bxshdw3 brdRad" [ngStyle]="{'background-image': 'url('+arr.CML_IMG_PATH+')'}" style="background-size: cover;background-position-y: bottom;">
+                </div>
+                <h5 class="clr1 hw px20 oblique" style="color: darkmagenta;">{{arr.CML_DESC}}</h5>
+           </div>     
+       </div>      
+    </div>
+    <div class="b" layout="row" layout-align="center center" style="height: 80px;color: darkmagenta;">
+        <h5 class="clr1 hw px30" style="font-family: fantasy;">Our Room Gallery</h5>
+    </div>
+    <div class="h" layout="column" layout-align="start center" style="height: 250px;background-color: antiquewhite;">
+        <div class="h btm" style="height: 200px;" layout="row" layout-align="space-around center">
+             <div class="v rp" style="width: 20%;" *ngFor="let arr of roomArr" layout="column" layout-align="start center">
+                 <div class="b bxshdw3 brdRad" [ngStyle]="{'background-image': 'url('+arr.CML_IMG_PATH+')'}" style="background-size: cover;background-position-y: bottom;">
+                 </div>
+                 <h5 class="clr1 hw px20 oblique" style="color: darkmagenta;">{{arr.CML_DESC}}</h5>
+                </div>   
+        </div>      
+     </div>
+     <div class="b" layout="row" layout-align="center center" style="height: 40px;color: darkmagenta;">
+        <h5 class="clr1 hw px20" style="font-family: fantasy;">Contact Us</h5>
+    </div>
+    <div class="b tm bxshdw3" layout="column" layout-align="center center" style="height: 120px;color: darkmagenta;">
+        <h5 class="clr1 hw px20" style="font-family: fantasy;">Email Id : hotelimperial@gmail.com</h5>
+        <h5 class="clr1 hw px20" style="font-family: fantasy;">PhoneNo : +353899882219</h5>
+        <h5 class="clr1 hw px20" style="font-family: fantasy;">Address : Sandymount,Dublin4</h5>
+    </div>
+</div>    
+<div class="b p" layout="column" layout-align="start center" *ngIf="BookingFlag == true" style="background-image: url('assets/amara-s1180x560.jpg');background-size: cover;background-repeat: no-repeat;">
+    <div class="h bxshdw3" style="height: 50px;width: 140px;" layout="row" layout-align="center center" (click)="backhome()">
+        <h5 class="px20 slct pt clr4 hw">Hotel Imperial</h5>
+    </div>
+    <div class="h" style="height: 50px;width: 70px;" layout="row" layout-align="center center">
+        <h5 class="px20 clr4 hw">Bookings:</h5>
+    </div>
+    <div class="lm vh bxshdw3 bm buttonBlue bBrd pt brd2"  layout="row" layout-align="center center" (click)="addFunc()">
+        <h5 class="px14 hw">Add bookings</h5>
+    </div>
+    <div class="v brd p fBrd brd4 bxshdw3" layout="row" layout-align="start center" style="height: 45px;background-color: white;width: 70%;">
+        <h5 class="px20 lm hw" style="width: 20%;">Bookings Ids</h5>
+        <h5 class="px20 lm hw" style="width: 20%;">Customer Name</h5>
+        <h5 class="px20 lm hw" style="width: 20%;">Start Date</h5>
+        <h5 class="px20 lm hw"style="width: 20%;">End Date</h5>
+        <h5 class="px20 lm hw"style="width: 15%;">Actions</h5>
+       
+    </div>
+    <div class="v brd p fBrd brd4 bxshdw3" layout="row" layout-align="start center" style="height: 45px;background-color: white;width: 70%;" *ngFor="let datanew of data[0];">
+        <h5 class="px20 lm hw" style="width: 20%;">{{datanew.BookingId}}</h5>
+        <h5 class="px20 lm hw" style="width: 20%;">{{datanew.CustomerName}}</h5>
+        <h5 class="px20 lm hw" style="width: 20%;">{{datanew.StartDate}}</h5>
+        <h5 class="px20 lm hw"style="width: 20%;">{{datanew.EndDate}}</h5>
+        <div class="lm vh buttonGreen bBrd pt brd2"  layout="row" layout-align="center center" (click)="editFunc(datanew.BookingId,datanew.CustomerName,datanew.StartDate,datanew.EndDate)">
+            <h5 class="px14 hw">Edit</h5>
+        </div>
+        <div class="lm vh buttonRed bBrd pt brd2"  layout="row" layout-align="center center" (click)="DelteFunc(datanew.BookingId)">
+            <h5 class="px14 hw">Delete</h5>
+        </div>
+    </div>
+  
+</div>
+<div class="masking bg12" style="position:fixed" *ngIf="addFlag || editFlag" layout="row" layout-align="center center">
+    <form [formGroup]="registerForm">
+    <div class="vh bg1 brd fBrd brdRad bxshdw3 brd2 lrp" style="width:330px;">
+        <div  class="form-group" layout="column" layout-align="start center">
+        <div class="h brd bBrd1" style="height:35px;" layout="row" layout-align="space-between center">
+            <h5 class="px15 lw clr">Add the details</h5>
+        </div>
+        <div class="h btm uplift" layout="column" layout-align="start start">
+            <input id="name" class="px14 mw uplift" maxlength="100" name="name" #name="ngModel" [(ngModel)]="customerInfo" [ngModelOptions]="{standalone: true}" type="text" placeholder="Enter Customer name" pattern="^(?=.*[A-Za-z])[\sA-Za-z0-9~!@#$%^&*()_+`\-={}|[\]\\:;'\x22<>›?,./][A-Za-z0-9~!@#$%^&*()_+`\-={}|[\]\\:;'\x22<>›?,./\s]*$" required autocomplete="off">
+        </div>  
+        </div>
+        <div class="h " style="height: 45px;">
+        Start Date : 
+        <mat-form-field class="brd lm pt bBrd1">
+            <input matInput [matDatepicker]="picker" [max]="endDateModel" (dateChange)="updateStartDate($event)" [(ngModel)]="selectedstDate" [ngModelOptions]="{standalone: true}" data-date-format='YYYY-MM-DD' required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          </div>
+          <div class="h" style="height: 45px;">
+          End Date : 
+          <mat-form-field class="brd lm pt bBrd1" style="margin-top: 10px;">     
+            <input matInput [matDatepicker]="picker1" [min]="maxDate" (dateChange)="updateEndDate($event)" [(ngModel)]="selectedendDate" [ngModelOptions]="{standalone: true}" data-date-format='YYYY-MM-DD' required>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          </div>
+        <div class="h btm" style="height:35px;" layout="row" layout-align="space-around center">
+            <div class="vh pt buttonRed lrm"  layout="row" layout-align="center center" (click)="Cancel()">
+                <h5 class="px15 hw">Cancel</h5>
+            </div>
+            <div class="vh pt buttonGreen lrm"  layout="row" layout-align="center center" (click)="onSubmit()">
+                <h5 class="px15 hw">Ok</h5>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
